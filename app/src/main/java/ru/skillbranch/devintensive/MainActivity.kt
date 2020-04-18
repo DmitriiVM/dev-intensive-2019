@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 return if (validateText(NAME_PATTERN, text)){
                     true to ""
                 } else {
-                    false to "Имя должно начинаться с заглавной буквы"
+                    false to "Имя должно начинаться с заглавной буквы\nКак меня зовут?"
                 }
             }
             Bender.Question.PROFESSION -> {
