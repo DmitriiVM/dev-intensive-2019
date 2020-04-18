@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
-import ru.skillbranch.devintensive.models.Profile
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
 class ProfileActivity : AppCompatActivity() {
@@ -40,7 +39,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun initViewModels(){
         viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
-        viewModel.getProfileData().observe(this, Observer { updateUI(it) })
+//        viewModel.getProfileData().observe(this, Observer { updateUI(it) })
         viewModel.getTheme().observe(this, Observer { updateTheme(it) })
 
     }
@@ -49,14 +48,14 @@ class ProfileActivity : AppCompatActivity() {
         delegate.setLocalNightMode(mode)
     }
 
-    private fun updateUI(profile: Profile) {
-        profile.toMap().also {
-            for ((k,v) in viewFields){
-                v.text = it[k].toString()
-            }
-        }
-
-    }
+//    private fun updateUI(profile: Profile) {
+//        profile.toMap().also {
+//            for ((k,v) in viewFields){
+//                v.text = it[k].toString()
+//            }
+//        }
+//
+//    }
 
     private fun initViews(savedInstanceState: Bundle?) {
         viewFields = mapOf(
@@ -74,7 +73,7 @@ class ProfileActivity : AppCompatActivity() {
         showCurrentMode(isEditMode)
 
         btn_edit.setOnClickListener {
-            if (isEditMode) saveProfileInfo()
+//            if (isEditMode) saveProfileInfo()
             isEditMode = !isEditMode
             showCurrentMode(isEditMode)
         }
@@ -118,16 +117,16 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveProfileInfo(){
-        Profile(
-            firstName = et_first_name.text.toString(),
-            lastName = et_last_name.text.toString(),
-            about= et_about.text.toString(),
-            repository= et_repository.text.toString()
-        ).apply {
-            viewModel.saveProfileData(this)
-        }
-    }
+//    private fun saveProfileInfo(){
+//        Profile(
+//            firstName = et_first_name.text.toString(),
+//            lastName = et_last_name.text.toString(),
+//            about= et_about.text.toString(),
+//            repository= et_repository.text.toString()
+//        ).apply {
+//            viewModel.saveProfileData(this)
+//        }
+//    }
 
 
 }
