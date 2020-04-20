@@ -17,31 +17,24 @@ data class Chat(
 ) {
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun unreadableMessageCount(): Int {
-        val count = messages.filter { !it.isReaded }.size
-        return count
+        return messages.filter { !it.isReaded }.size
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun lastMessageDate(): Date? {
         val sortedList =  messages.sortedBy { it.date }
         if (sortedList.isNotEmpty()){
-            val lastDate = sortedList.last().date
-            return lastDate
+            return sortedList.last().date
         }
         return null
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun lastMessageShort(): Pair<String, String?> {
-
         return when(val lastMessage = messages.lastOrNull()) {
-            is TextMessage -> {
-                "${lastMessage.text}" to lastMessage.from.firstName
-            }
-            is ImageMessage -> {
-                "${lastMessage.from.firstName} - отправил фото" to lastMessage.from.firstName
-            }
-            else -> "La la ${lastMessage?.from}" to lastMessage?.from?.firstName
+            is TextMessage -> "${lastMessage.text}" to lastMessage.from.firstName
+            is ImageMessage -> "${lastMessage.from.firstName} - отправил фото" to lastMessage.from.firstName
+            else -> "" to lastMessage?.from?.firstName
         }
     }
 

@@ -13,15 +13,6 @@ object CacheManager {
     private val users = mutableLiveData(DataGenerator.stabUsers)
 
     fun loadChats(): MutableLiveData<List<Chat>>{
-        val tt = DataGenerator.stabChats
-        tt.forEach {
-            val mm = it.messages
-            mm.forEach { m ->
-                Log.d("mmm", "CacheManager :  loadChats --  ${m.date}")
-            }
-
-        }
-        Log.d("mmm", "CacheManager :  loadChats --  ")
         return chats
     }
 

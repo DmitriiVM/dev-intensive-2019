@@ -45,7 +45,7 @@ class UserAdapter(val listener: (UserItem) -> Unit): RecyclerView.Adapter<UserAd
         diffResult.dispatchUpdatesTo(this)
     }
 
-    inner class UserViewHolder(convertView: View): RecyclerView.ViewHolder(convertView), LayoutContainer{
+    class UserViewHolder(convertView: View): RecyclerView.ViewHolder(convertView), LayoutContainer{
         override val containerView: View?
             get() = itemView
 

@@ -41,12 +41,12 @@ class GroupActivity : AppCompatActivity() {
         searchView.queryHint = "Введите имя пользователя"
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {
-                viewModel.handlesearchQuery(query)
+                viewModel.handleSearchQuery(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                viewModel.handlesearchQuery(newText)
+                viewModel.handleSearchQuery(newText)
                 return true
             }
 
@@ -99,7 +99,6 @@ class GroupActivity : AppCompatActivity() {
     private fun toggleFab(isShow: Boolean) {
         if (isShow) fab.show()
         else fab.hide()
-
     }
 
     private fun addChipToGroup(user:UserItem){

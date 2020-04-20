@@ -76,6 +76,7 @@ class ChatAdapter(val listener: (ChatItem) -> Unit): RecyclerView.Adapter<ChatAd
     }
 
     inner class SingleViewHolder(convertView: View) : ChatItemViewHolder(convertView), ItemTouchViewHolder{
+
         override fun onItemSelected() {
             itemView.setBackgroundColor(Color.LTGRAY)
         }

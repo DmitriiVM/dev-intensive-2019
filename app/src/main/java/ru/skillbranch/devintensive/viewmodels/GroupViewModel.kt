@@ -9,9 +9,11 @@ import ru.skillbranch.devintensive.models.data.UserItem
 import ru.skillbranch.devintensive.repositories.GroupRepository
 
 class GroupViewModel : ViewModel() {
+
     private val query = mutableLiveData("")
     private val groupRepository = GroupRepository()
     private val userItems = mutableLiveData(loadUsers())
+
     private val selectedItems = Transformations.map(userItems) { users ->
         users.filter { it.isSelected }
     }
@@ -23,12 +25,16 @@ class GroupViewModel : ViewModel() {
             val queryStr = query.value!!
             val users = userItems.value!!
 
-            result.value = if(queryStr.isEmpty()) users
+            result.value = if (queryStr.isEmpty()) users
             else users.filter { it.fullName.contains(queryStr, true) }
         }
 
-        result.addSource(userItems){filterF.invoke()}
-        result.addSource(query){filterF.invoke()}
+        result.addSource(userItems) {
+            filterF.invoke()
+        }
+        result.addSource(query) {
+            filterF.invoke()
+        }
 
         return result
     }
@@ -49,11 +55,12 @@ class GroupViewModel : ViewModel() {
         }
     }
 
-    fun handlesearchQuery(text: String) {
+    fun handleSearchQuery(text: String) {
         query.value = text
     }
 
     private fun loadUsers(): List<UserItem> = groupRepository.loadUser().map { it.toUserItem() }
+
     fun handleCreateGroup() {
         groupRepository.createChat(selectedItems.value!!)
     }
